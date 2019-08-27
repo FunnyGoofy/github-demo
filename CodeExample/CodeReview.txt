@@ -1,0 +1,67 @@
+///////////////////////////////////////////////////////////////////////////////
+//Done:
+
+unit test:
+	1. added 7 more unit tests:
+		a. test_event_0_desc_enum (line 293)
+		b. test_event_1_desc_enum 
+		c. test_event_5_desc_enum 
+		d. test_event_7_desc_enum 
+		e. test_event_8_desc_enum 
+		f. test_event_9_desc_enum 
+		g. test_whole_events_stream 
+	2. rename stream
+	
+	3. create a file for sdo datatype test. 
+	   but I am not sure if it is right(need to confirm or get new event file) 
+	  
+event parser:
+    Based on the feedback in the last code review, I did two changes:
+	1. added logic to handle sdo datatype(parser.cpp line 372)
+	   void decoder::get_da_type(vector<xml_node> &nodes, const event_info &event, std::size_t &code_element_start)
+	   
+	   if name is "DA" and then return nodes,
+       if name is "SDO"	and then recursivly searching until the final "DA" is found.
+    
+    2. divided function hookup into several small functions in order to better read and maintain. 	
+	
+///////////////////////////////////////////////////////////////////////////////
+//Busincess Logic explain:
+
+1. create_type_map(_event_type_map): create a map which contain 14 DA types line 290
+   this map is used in fill_event_desc() line 308
+
+2. in fill_events() line 446
+        |
+		|
+		|------------------------------------------------------------------------------------------------
+   get_final_type() is called. this function is to get the type string in a "DA" node.                   |
+        |                                                                                                |
+		|                                                                                                |
+		|                                                                                                |
+	in this function, hybird searching algorithem is provided.(line 412 - line 435)                      |
+        |                                                                                                |
+		|                                                                                                |
+		|	                                                                                             |
+    the function get_da_type() (line 372) is to get the all nodes under a specific DOTYPE node,          |
+	SDO data type is handled.(recursively searching)                                                     |
+        -------------------------------------------------------------------------------------------------	                                                                                                     |
+        |
+		|
+		|
+		fill_event_desc() function is invoked.
+    	
+	
+get_final_type()
+
+///////////////////////////////////////////////////////////////////////////////
+//Question:
+        1. how to test SDO type?
+	2. can anyone kick off a build? 
+	3. what is for next? continue to work with Sam to get familiar with testing and powerSYSTEM center?
+	4. any existing projects recommended if I try to understand powerSYSTEM center through source code. 
+	
+
+///////////////////////////////////////////////////////////////////////////////
+//Discussion:
+
