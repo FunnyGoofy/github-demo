@@ -1,1 +1,7 @@
 Test Git Quick Start Demo
+git status
+ls
+git add .
+git push origin master
+git pull origin master
+git init
