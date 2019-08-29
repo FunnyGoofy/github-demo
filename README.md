@@ -4,8 +4,7 @@ and Github together. Adding a line for rebasing example, then
 more changes from newfeature branch too
 
 ## Introduction
-new project
-
+new project, multi-team
 ## Purpose
 
 As stated above, the main purpose is to provide simple example
